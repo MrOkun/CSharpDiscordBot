@@ -21,7 +21,7 @@ namespace CSharpBot
 
         public void Help(SocketMessage msg)
         {
-            msg.Channel.SendMessageAsync(".\n Hi! All bot commands : \n !roll - roll random number (0, 100) \n !author - info about me.");
+            msg.Channel.SendMessageAsync(".\n Hi! All bot commands : \n !roll - roll random number (0, 100) \n !author - info about me. \n !neck {any name} - hug anyone");
         }
 
         public void Author(SocketMessage msg)
@@ -50,6 +50,30 @@ namespace CSharpBot
             var PortalCloserLink = "https://www.youtube.com/watch?v=1PsV6OlIjJE";
 
             msg.Channel.SendMessageAsync($"Link to video example : {PortalCloserLink}");
+        }
+
+        public void Emoji(SocketMessage msg)
+        {
+            Emote emote;
+            Emote.TryParse("<:grinning:902558911142449222>", out emote);
+            msg.AddReactionAsync(emote);
+        }
+
+        public void Neck(SocketMessage msg)
+        {
+            var message = msg.Content;
+
+            if (message.Contains("@"))
+            {
+                message = message.Replace("!neck", null);
+                message = message.Replace(" ", null);
+
+                msg.Channel.SendMessageAsync($"{msg.Author.Mention} обнял(а) {message}");
+            }
+            else
+            {
+                msg.Channel.SendMessageAsync("Вы ввели не имя ползователя!");
+            }
         }
     }
 }
