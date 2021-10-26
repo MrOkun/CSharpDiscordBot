@@ -59,16 +59,17 @@ namespace CSharpBot
             msg.AddReactionAsync(emote);
         }
 
-        public void Neck(SocketMessage msg)
+        public void Hug(SocketMessage msg)
         {
             var message = msg.Content;
 
             if (message.Contains("@"))
             {
-                message = message.Replace("!neck", null);
-                message = message.Replace(" ", null);
+                message = message.Replace("!hug", null);
+                message = message.Replace(" @", null);
 
-                msg.Channel.SendMessageAsync($"{msg.Author.Mention} обнял(а) {message}");
+                //msg.Channel.SendMessageAsync($"{msg.Author.Mention} обнял(а) {message}");
+                msg.Channel.SendFileAsync(@"img/hug/img1.gif", $"> {msg.Author} обнял(а) {message}");
             }
             else
             {

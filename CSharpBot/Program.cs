@@ -78,10 +78,12 @@ namespace CSharpBot
 
         private Task CommandsHandler(SocketMessage msg)
         {
+            Console.WriteLine($"{msg.Author.Mention} - {msg.Content}");
+
             if (!msg.Author.IsBot)
-                if (msg.Content.Contains("neck"))
+                if (msg.Content.Contains("hug"))
                 {
-                    Commands.Neck(msg);
+                    Commands.Hug(msg);
                 }
                 else
                 {
